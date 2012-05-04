@@ -21,10 +21,10 @@ module.exports = class SourceFileList extends EventEmitter
     paths = @config.paths
     isInAssets = false
 
-    isInAssets ||= helpers.startsWith(path, assetPath) for assetPath in paths.assets
+    isInAssets ||= helpers.startsWithPath(path, assetPath) for assetPath in paths.assets
 
     isInAssets or
-    helpers.startsWith(sysPath.basename(path), '_') or
+    helpers.startsWithPath(sysPath.basename(path), '_') or
     path in [paths.config, paths.packageConfig]
 
   # Called every time any file was changed.
@@ -55,7 +55,7 @@ module.exports = class SourceFileList extends EventEmitter
       @_resetTimer()
 
   _add: (path, compiler, isHelper) ->
-    isVendor = helpers.startsWith(path, @config.paths.vendor)
+    isVendor = helpers.startsWithPath(path, @config.paths.vendor)
     file = new SourceFile path, compiler, isHelper, isVendor
     @files.push file
     file
