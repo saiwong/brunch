@@ -12,6 +12,10 @@ exports.pluralize = (word) ->
 exports.startsWith = (string, substring) ->
   string.indexOf(substring) is 0
 
+exports.startsWithPath = (string, path) ->
+  exports.startsWith(string, path) or
+  exports.startsWith(string.replace(/\\/g, '/'), path)
+
 # Extends the object with properties from another object.
 # Example
 #   

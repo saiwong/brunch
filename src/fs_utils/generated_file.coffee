@@ -26,8 +26,8 @@ sortAlphabetically = (a, b) ->
 # TODO: check for config.vendorPath
 sortByVendor = (config, a, b) ->
   vendorPath = 'vendor'
-  aIsVendor = helpers.startsWith a, vendorPath
-  bIsVendor = helpers.startsWith a, vendorPath
+  aIsVendor = helpers.startsWithPath a, vendorPath
+  bIsVendor = helpers.startsWithPath a, vendorPath
   if aIsVendor and not bIsVendor
     -1
   else if not aIsVendor and bIsVendor
